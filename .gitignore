@@ -1,0 +1,8 @@
+imp.txt
+a_env
+account/migrations
+authapi/.env
+db.sqlite3
+authapi/__pycache__
+account/__pycache__
+manage.py
