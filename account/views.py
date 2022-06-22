@@ -24,7 +24,7 @@ def get_tokens_for_user(user):
     }
 
 class UserRegistrationView(APIView):
-    renderer_classes = [UserRenderer]
+    # renderer_classes = [UserRenderer]
     def post(self, request, format=None):
         serializer = UserRegistrationSerializer(data=request.data)
 
@@ -39,7 +39,7 @@ class UserRegistrationView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class UserLoginView(APIView):
-    renderer_classes = [UserRenderer]
+    # renderer_classes = [UserRenderer]
     def post(self, request, format=None):
         serializer = UserLoginSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
@@ -56,7 +56,7 @@ class UserLoginView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class UserProfileView(APIView):
-    renderer_classes = [UserRenderer]
+    # renderer_classes = [UserRenderer]
     permission_classes = [IsAuthenticated]
     def get(self, request, format=None):
         serializer = UserProfileSerializer(request.user)
@@ -64,7 +64,7 @@ class UserProfileView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 class UserChangePasswordView(APIView):
-    renderer_classes = [UserRenderer]
+    # renderer_classes = [UserRenderer]
     permission_classes = [IsAuthenticated]
 
     def post(self, request, format=None):
@@ -78,7 +78,7 @@ class UserChangePasswordView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class SendPasswordResetEmailView(APIView):
-    renderer_classes = [UserRenderer]
+    # renderer_classes = [UserRenderer]
     def post(self, request, format=None):
         serializer = SendPasswordResetEmailSerializer(data=request.data)
         
@@ -87,7 +87,7 @@ class SendPasswordResetEmailView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class UserPasswordResetView(APIView):
-    renderer_classes = [UserRenderer]
+    # renderer_classes = [UserRenderer]
     def post(self, request, uid, token ,format=None):
         serializer = UserPasswordResetSerializer(data=request.data, context={'uid':uid, 'token':token})
         
