@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import django_heroku
 from pathlib import Path
 from datetime import timedelta
 import environ
@@ -28,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+     "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
      "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -96,8 +98,8 @@ REST_FRAMEWORK = {
         
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-    #'DEFAULT_RENDERER_CLASSES': (
-     #   'rest_framework.renderers.JSONRenderer',)
+    # 'DEFAULT_RENDERER_CLASSES': (
+    #    'rest_framework.renderers.JSONRenderer',)
     
 }
 
@@ -172,3 +174,5 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
 ]
+
+django_heroku.settings(locals())
